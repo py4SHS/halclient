@@ -44,27 +44,32 @@ class HALClient:
 
     def __init__(
         self,
-        base_url: str = "http://api.archives-ouvertes.fr/search/",
-        portail: str | None = None,
+        portal: str | None = None,
         collection: str | None = None,
         default_format: Format = Format.JSON,
         timeout: float = 60,
+        base_url: str = "http://api.archives-ouvertes.fr/search/",
     ):
         """Create a new instance of HALClient.
 
-        Base URL is configurable
+        Arguments:
+            portal: HAL API exists for several portals, you can choose which portal you want to use. By default the global portal is used.
+            collection: Limit the search to a specific collection.
+            default_format: Choose the default output format for all requests.
+            timeout: Choose the duration to wait for each request to succeed. Requests are cancelled if they do not succeed before timeout.
+            base_url: The base URL where requests should be sent. Users do not need to change the default value most of the time.
         """
-        if collection and portail:
+        if collection and portal:
             raise ValueError(
                 "Either 'portail' or 'collection' parameter can be provided, but not both at the same time."
             )
         # It's a good practice to store the user provided configuration
         self.collection = collection
-        self.portail = portail
+        self.portal = portal
         self.default_format = default_format
         # Build the URL where requests should be sent
-        if self.portail:
-            base_url = urljoin(base_url, portail)
+        if self.portal:
+            base_url = urljoin(base_url, portal)
         elif self.collection:
             base_url = urljoin(base_url, collection)
         # Create an HTTP client. This object will be used to send requests to the HAL API.
