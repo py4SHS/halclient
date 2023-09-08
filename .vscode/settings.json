@@ -9,7 +9,7 @@
         "**/__pycache__": true,
         "**/*.pyc": true,
         "**/.venv": true,
-        "**/.vscode": true,
+        "**/.vscode": false,
         "**/*.egg-info": true,
     },
     "[python]": {
