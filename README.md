@@ -48,3 +48,7 @@ within a for loop and incrementing the offset for each query (i.e., users must h
 ## Possible exercices
 
 1. Modify the `HALClient.search()` method so that it automatically handles pagination for the users, and sends several requests until all available results are fetched.
+
+## Note about python packaging
+
+This project is packaged using [setuptools](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html).
