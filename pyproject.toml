@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "halpy"
+authors = [
+    { name = "Guillaume Charbonnier", email = "guillaume.charbonnier@araymond.com" },
+]
+description = "Simple python client to interact with HAL API."
+readme = "README.md"
+requires-python = ">=3.8,<4.0"
+license = { text = "Apache-2.0" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+]
+dynamic = ["version"]
+dependencies = ["httpx"]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "invoke",
+    "flake8",
+]
+
+[project.urls]
+Repository = "https://github.com/py4shs/halpy"
+Issues = "https://github.com/py4shs/halpy/issues"
+
+
+[tool.setuptools.dynamic]
+version = { attr = "halpy.__about__.__version__" }
+
+[tool.pyright]
+pythonVersion = "3.10"
+include = ["src"]
+strict = ["src"]
+exclude = ["**/.venv", "**/node_modules", "**/__pycache__", ".git", "**/build"]
+venv = ".venv"
+venvPath = "."
+typeCheckingMode = "basic"
